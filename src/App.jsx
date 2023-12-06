@@ -12,9 +12,11 @@ export default function App() {
     )
 
     React.useEffect(() => {
-      localStorage.setItem('notes', JSON.stringify(notes))
-    }, [notes])
+        localStorage.setItem('notes', JSON.stringify(notes))
+        console.log(currentNoteId)
+      }, [notes])
     
+
     function createNewNote() {
         const newNote = {
             id: nanoid(),
@@ -25,11 +27,18 @@ export default function App() {
     }
     
     function updateNote(text) {
-        setNotes(oldNotes => oldNotes.map(oldNote => {
-            return oldNote.id === currentNoteId
-                ? { ...oldNote, body: text }
-                : oldNote
-        }))
+        // put the most recently modified note at the top and update the note
+        setNotes(oldNotes => {
+          const arr = []
+          for(let i = 0; i < oldNotes.length; i++) {
+            if(oldNotes[i].id === currentNoteId) {
+              arr.unshift({...oldNotes[i], body: text})
+            } else {
+              arr.push(oldNotes[i])
+            }
+          }
+          return arr
+        })
     }
     
     function findCurrentNote() {

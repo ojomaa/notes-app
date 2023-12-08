@@ -25,7 +25,7 @@ export default function App() {
         setNotes(prevNotes => [newNote, ...prevNotes])
         setCurrentNoteId(newNote.id)
     }
-    
+
     // put the most recently modified note at the top and update the note
     function updateNote(text) {
         setNotes(oldNotes => {
@@ -39,6 +39,13 @@ export default function App() {
           }
           return arr
         })
+    }
+
+    function deleteNote(event, noteId) {
+      event.stopPropagation()
+
+      // Filter the notes to not include the deleted note
+      setNotes(prevNotes => prevNotes.filter(note => note.id != noteId))
     }
     
     function findCurrentNote() {
@@ -62,6 +69,7 @@ export default function App() {
                     currentNote={findCurrentNote()}
                     setCurrentNoteId={setCurrentNoteId}
                     newNote={createNewNote}
+                    deleteNote={deleteNote}
                 />
                 {
                     currentNoteId && 

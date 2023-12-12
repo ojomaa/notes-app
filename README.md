@@ -5,10 +5,10 @@ Built a feature-rich Notes app using React, empowering users to create, edit, an
 
 ## Visual
 
-** Create, add, edit, update and delete notes **
+**Create, add, edit, update and delete notes**
 
 <img src= './notesapp1.gif'>
 
-** Use Markdown tools and preview notes **
+**Use Markdown tools and preview notes**
 
 <img src= './notesapp2.gif'>
